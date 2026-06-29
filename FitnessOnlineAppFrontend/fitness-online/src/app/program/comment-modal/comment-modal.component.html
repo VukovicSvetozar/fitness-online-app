@@ -1,0 +1,76 @@
+<div class="komentar-kontejner">
+    <h1 mat-dialog-title>Komentari</h1>
+    <div mat-dialog-content>
+
+        <div>
+            <div>
+                <div *ngFor="let komentar of listaKomentara">
+                    <mat-card class="komentar-kartica">
+                        <mat-card-header>
+                            <div mat-card-avatar class="komentar-slika"
+                                [style.background-image]="'url(' + komentar.avatarUrl + ')'">
+                            </div>
+                            <mat-card-title class="komentar-ime">{{komentar?.korisnickoIme}}</mat-card-title>
+                            <div class="komentar-vrijeme">{{komentar.vrijeme}}</div>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <div class="komentar-tekst-kontejner">
+                                <span class="komentar-tekst"> {{komentar?.komentar}}
+                                </span>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+            <mat-paginator [length]="ukupnoElemenata" [pageSize]="brojElemenata" [pageSizeOptions]="[3, 9, 18]"
+                (page)="promjenaStranice($event)"></mat-paginator>
+        </div>
+
+        <div class="komentar-dodaj-zatvori-kontejner">
+            <div class="komentar-dodaj-kontejner">
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Dodaj komentar
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div>
+                            <form [formGroup]="komentarForm" (ngSubmit)="dodajKomentar()">
+                                <mat-form-field appearance="outline">
+                                    <textarea matInput formControlName="tekst" placeholder="Unesite tekst..." required
+                                        pattern="^[a-zA-Z0-9 .,!?]*$" minlength="3" maxlength="300"></textarea>
+                                    <mat-error
+                                        *ngIf="komentarForm.get('tekst')?.hasError('required') && komentarForm.get('tekst')?.touched">
+                                        Tekst je obavezan!
+                                    </mat-error>
+                                    <mat-error
+                                        *ngIf="komentarForm.get('tekst')?.hasError('minlength') && komentarForm.get('tekst')?.touched">
+                                        Najmanje tri karaktera!
+                                    </mat-error>
+                                    <mat-error
+                                        *ngIf="komentarForm.get('tekst')?.hasError('maxlength') && komentarForm.get('tekst')?.touched">
+                                        Najvi&#353;e 300 karaktera.
+                                    </mat-error>
+                                    <mat-error
+                                        *ngIf="komentarForm.get('tekst')?.hasError('pattern') && komentarForm.get('tekst')?.touched">
+                                        Ne mogu specijalni karakteri.
+                                    </mat-error>
+                                </mat-form-field>
+                                <div fxLayout="row" fxLayoutAlign="center center">
+                                    <button mat-raised-button color="primary" type="submit"
+                                        [disabled]="komentarForm.invalid">Dodaj</button>
+                                </div>
+                            </form>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+            <div class="kategorija-dugmad" mat-dialog-actions>
+                <button mat-raised-button color="primary" (click)="zatvori()">Zatvori</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,24 @@
+.naslov {
+    text-align: center;
+}
+
+.info {
+    font-weight: bold;
+    margin-left: 30px;
+}
+
+.poruka {
+    margin-top: 25px;
+    text-align: center;
+    color: black;
+}
+
+.dugme-kontejner {
+    display: flex;
+    justify-content: center;
+}
+
+.dugme {
+    background-color: #3F51B5;
+    color: white;
+}

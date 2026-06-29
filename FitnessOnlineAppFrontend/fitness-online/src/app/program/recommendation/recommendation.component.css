@@ -1,0 +1,36 @@
+mat-expansion-panel {
+    width: 60%;
+    margin: 30px auto;
+    background-color: #47709f;
+}
+
+.ime {
+    width: 50%;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.tezina {
+    width: 40%;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+mat-icon {
+    width: 10%;
+    color: white;
+    margin-top: 5px;
+    padding-top: 3px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.instrukcije {
+    background-color: #ddf5f5;
+    text-align: left;
+    padding: 10px;
+}

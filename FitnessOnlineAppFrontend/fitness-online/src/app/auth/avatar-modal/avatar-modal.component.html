@@ -1,0 +1,15 @@
+<div class="avatar-kontejner">
+    <h1 mat-dialog-title>Odaberi avatar</h1>
+    <div mat-dialog-content>
+        <mat-grid-list cols="6" rowHeight="50px">
+            <mat-grid-tile *ngFor="let avatar of listaAvatara" (click)="odaberiAvatar(avatar)">
+                <img [src]="avatar" alt="Avatar" width="50" height="50"
+                    [ngClass]="{'avatar-odabrani': avatar === izabraniAvatar}">
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+    <div class="avatar-dugmad" mat-dialog-actions>
+        <button mat-raised-button color="primary" (click)="odustani()">Odustani</button>
+        <button mat-raised-button color="primary" (click)="potvrdi()">Potvrdi</button>
+    </div>
+</div>

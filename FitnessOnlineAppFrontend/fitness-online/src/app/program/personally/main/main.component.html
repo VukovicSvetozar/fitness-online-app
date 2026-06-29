@@ -1,0 +1,167 @@
+<app-menu></app-menu>
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened>
+
+        <mat-accordion class="kartica-kontejner">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Statistika
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div>
+                    <div class="statistika-kartica">
+                        <span class="statistika-naziv">aktivno: </span> <span
+                            class="statistika-vrijednost">{{statistikaUkupnoElemenataAktivno}}</span>
+                    </div>
+                    <div class="statistika-kartica">
+                        <span class="statistika-naziv">završeno: </span> <span
+                            class="statistika-vrijednost">{{statistikaUkupnoElemenataZavrseno}}</span>
+                    </div>
+                    <div class="statistika-kartica">
+                        <span class="statistika-naziv">kupljeno: </span> <span
+                            class="statistika-vrijednost">{{statistikaUkupnoElemenataKupljeno}}</span>
+                    </div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+        <div class="panel-prostor"></div>
+
+        <mat-accordion class="kartica-kontejner">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Kreiraj program
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div>
+                    <div fxLayout="row" fxLayoutAlign="center center">
+                        <button mat-raised-button class="dodaj-program-dugme" color="primary" type="button"
+                            (click)="otvoriDodajFitnesProgramDijalog()">Dodaj
+                            fitnes program</button>
+                    </div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+        <div class="panel-prostor"></div>
+
+        <mat-accordion class="kartica-kontejner">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Pretplata
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div>
+                    <form [formGroup]="pretplataForm" (ngSubmit)="pretplata()">
+                        <mat-form-field class="pretplata-kategorija" appearance="outline">
+                            <mat-label>Kategorija</mat-label>
+                            <mat-select formControlName="kategorija">
+                                <mat-option *ngFor="let kategorija of kategorije" [value]="kategorija.id">
+                                    {{kategorija.naziv}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div fxLayout="row" fxLayoutAlign="center center" class="dugme-kontejner">
+                            <button mat-raised-button color="primary" type="submit"
+                                [disabled]="pretplataForm.invalid">Pretplata</button>
+                        </div>
+
+                    </form>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <mat-tab-group>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="ponuda-tab-ikonica">shopping_cart</mat-icon> Aktivni
+                </ng-template>
+                <div class="program-kontejner">
+                    <div class="program-kartica" *ngFor="let kartica of listaKarticaAktivnihFitnesPrograma">
+                        <div class="kartica-zaglavlje">
+                            <div class="kartica-naslov">{{kartica.naziv}}</div>
+                            <div class="kartica-podnaslov">{{kartica.nazivKategorije}}</div>
+                        </div>
+                        <div class="kartica-poster-kontejner">
+                            <img class="kartica-poster" [src]="kartica.posterUrl" alt="Podrazumijevana slika">
+                        </div>
+                        <div class="program-kartica-sadrzaj">
+                            <p class="program-kartica-sadrzaj-cijena">{{kartica.cijena | number:'1.2-2'}}<span
+                                    class="program-kartica-sadrzaj-valuta">KM</span> </p>
+                            <div class="program-kartica-sadrzaj-stavka">
+                                <a mat-raised-button color="primary" class="program-kartica-sadrzaj-dugme"
+                                    [routerLink]="['/details', kartica.id, { dozvoljenKomentar: true, dozvoljenaKupovina: false, dozvoljenoBrisanje: false, dozvoljenZavrsetak: true, dozvoljenoUcestvovanje: false }]">Detalji</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <mat-paginator [length]="ukupnoElemenataAktivno" [pageSize]="brojElemenataAktivno"
+                    [pageSizeOptions]="[2, 4, 8]"
+                    (page)="promjenaStraniceAktivniFitnesProgramiKorisnika($event)"></mat-paginator>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="ponuda-tab-ikonica">remove_shopping_cart</mat-icon> Završeni
+                </ng-template>
+                <div class="program-kontejner">
+                    <div class="program-kartica" *ngFor="let kartica of listaKarticaZavrsenihFitnesPrograma">
+                        <div class="kartica-zaglavlje">
+                            <div class="kartica-naslov">{{kartica.naziv}}</div>
+                            <div class="kartica-podnaslov">{{kartica.nazivKategorije}}</div>
+                        </div>
+                        <div class="kartica-poster-kontejner">
+                            <img class="kartica-poster" [src]="kartica.posterUrl" alt="Podrazumijevana slika">
+                        </div>
+                        <div class="program-kartica-sadrzaj">
+                            <p class="program-kartica-sadrzaj-cijena">{{kartica.cijena | number:'1.2-2'}}<span
+                                    class="program-kartica-sadrzaj-valuta">KM</span> </p>
+                            <div class="program-kartica-sadrzaj-stavka">
+                                <a mat-raised-button color="primary" class="program-kartica-sadrzaj-dugme"
+                                    [routerLink]="['/details', kartica.id, { dozvoljenKomentar: false, dozvoljenaKupovina: false, dozvoljenoBrisanje: true, dozvoljenZavrsetak: false, dozvoljenoUcestvovanje: false }]">Detalji</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <mat-paginator [length]="ukupnoElemenataZavrseno" [pageSize]="brojElemenataZavrseno"
+                    [pageSizeOptions]="[2, 4, 8]"
+                    (page)="promjenaStraniceZavrseniFitnesProgramiKorisnika($event)"></mat-paginator>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="ponuda-tab-ikonica">shopping_basket</mat-icon> Kupljeni
+                </ng-template>
+                <div class="program-kontejner">
+                    <div class="program-kartica" *ngFor="let kartica of listaKarticaKupljenihFitnesPrograma">
+                        <div class="kartica-zaglavlje">
+                            <div class="kartica-naslov">{{kartica.naziv}}</div>
+                            <div class="kartica-podnaslov">{{kartica.nazivKategorije}}</div>
+                        </div>
+                        <div class="kartica-poster-kontejner">
+                            <img class="kartica-poster" [src]="kartica.posterUrl" alt="Podrazumijevana slika">
+                        </div>
+                        <div class="program-kartica-sadrzaj">
+                            <p class="program-kartica-sadrzaj-cijena">{{kartica.cijena | number:'1.2-2'}}<span
+                                    class="program-kartica-sadrzaj-valuta">KM</span> </p>
+                            <div class="program-kartica-sadrzaj-stavka">
+                                <a mat-raised-button color="primary" class="program-kartica-sadrzaj-dugme"
+                                    [routerLink]="['/details', kartica.id, { dozvoljenKomentar: true, dozvoljenaKupovina: false, dozvoljenoBrisanje: false, dozvoljenZavrsetak: false, dozvoljenoUcestvovanje: true }]">Detalji</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <mat-paginator [length]="ukupnoElemenataKupljeno" [pageSize]="brojElemenataKupljeno"
+                    [pageSizeOptions]="[2, 4, 8]"
+                    (page)="promjenaStraniceKupljeniFitnesProgramiKorisnika($event)"></mat-paginator>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-sidenav-content>
+</mat-sidenav-container>

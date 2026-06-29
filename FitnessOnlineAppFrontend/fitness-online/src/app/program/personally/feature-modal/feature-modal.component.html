@@ -1,0 +1,122 @@
+<div class="svojstva-kontejner">
+    <h1 mat-dialog-title>Odaberi svojstva</h1>
+    <div mat-dialog-content>
+        <form [formGroup]="svojstvoForm">
+            <div class="svojstva-red">
+                <mat-form-field appearance="outline">
+                    <mat-label>Naziv</mat-label>
+                    <input matInput formControlName="naziv" placeholder="Naziv" required minlength="3" maxlength="30">
+                    <mat-icon matSuffix>short_text</mat-icon>
+                    <mat-error
+                        *ngIf="svojstvoForm.get('naziv')?.hasError('required') && svojstvoForm.get('naziv')?.touched">
+                        Naziv je obavezan!
+                    </mat-error>
+                    <mat-error
+                        *ngIf="svojstvoForm.get('naziv')?.hasError('minlength') && svojstvoForm.get('naziv')?.touched">
+                        Naziv mora imati najmanje 3 karaktera!
+                    </mat-error>
+                    <mat-error
+                        *ngIf="svojstvoForm.get('naziv')?.hasError('maxlength') && svojstvoForm.get('naziv')?.touched">
+                        Naziv mo&#382;e imati najvi&#353;e 30 karaktera.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Cijena</mat-label>
+                    <input matInput type="text" formControlName="cijena" placeholder="0" required
+                        pattern="^\d+(\.\d{1,2})?$">
+                    <span matTextSuffix>&nbsp;KM</span>
+                    <mat-error
+                        *ngIf="svojstvoForm.get('cijena')?.hasError('required') && svojstvoForm.get('cijena')?.touched">
+                        Cijena je obavezna!</mat-error>
+                    <mat-error
+                        *ngIf="svojstvoForm.get('cijena')?.hasError('pattern') && svojstvoForm.get('cijena')?.touched">
+                        Unesite validan broj!</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="svojstva-red">
+                <mat-form-field appearance="outline">
+                    <mat-label>Trajanje</mat-label>
+                    <input matInput formControlName="trajanje" placeholder="Broj dana" required minlength="1"
+                        pattern="^\d+$">
+                    <mat-icon matSuffix>access_time</mat-icon>
+                    <mat-error
+                        *ngIf="svojstvoForm.get('trajanje')?.hasError('required') && svojstvoForm.get('trajanje')?.touched">
+                        Trajanje je obavezno!
+                    </mat-error>
+                    <mat-error
+                        *ngIf="svojstvoForm.get('trajanje')?.hasError('pattern') && svojstvoForm.get('trajanje')?.touched">
+                        Unesite broj dana!</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Nivo težine</mat-label>
+                    <mat-select formControlName="nivoTezine">
+                        <mat-option value="lako">Lako</mat-option>
+                        <mat-option value="umjereno">Umjereno</mat-option>
+                        <mat-option value="tesko">Teško</mat-option>
+                    </mat-select>
+                    <mat-error
+                        *ngIf="svojstvoForm.get('nivoTezine')?.hasError('required') && svojstvoForm.get('nivoTezine')?.touched">
+                        Nivo težine je obavezan!
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="svojstva-red">
+                <mat-form-field appearance="outline">
+                    <mat-label>Lokacija:</mat-label>
+                    <mat-select formControlName="tipLokacije" (selectionChange)="promjenaTipaLokacije($event.value)">
+                        <mat-option value="online">Online</mat-option>
+                        <mat-option value="teretana">Teretana</mat-option>
+                        <mat-option value="park">Park</mat-option>
+                    </mat-select>
+                    <mat-error
+                        *ngIf="svojstvoForm.get('tipLokacije')?.hasError('required') && svojstvoForm.get('tipLokacije')?.touched">
+                        Lokacija je obavezna!
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" *ngIf="prikaziAdresu">
+                    <mat-label>Adresa:</mat-label>
+                    <input matInput formControlName="adresa" minlength="3" maxlength="100">
+                    <mat-icon matSuffix>location_on</mat-icon>
+                    <mat-error
+                        *ngIf="svojstvoForm.get('adresa')?.hasError('minlength') && svojstvoForm.get('adresa')?.touched">
+                        Adresa mora imati bar 3 karaktera!
+                    </mat-error>
+                    <mat-error
+                        *ngIf="svojstvoForm.get('adresa')?.hasError('maxlength') && svojstvoForm.get('adresa')?.touched">
+                        Adresa mo&#382;e imati najvi&#353;e 100 karaktera.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" *ngIf="prikaziUrl">
+                    <mat-label>URL:</mat-label>
+                    <input matInput formControlName="url">
+                    <mat-icon matSuffix>link</mat-icon>
+                    <mat-error *ngIf="svojstvoForm.get('url')?.hasError('pattern') && svojstvoForm.get('url')?.touched">
+                        Unesite pravilan format za url!</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="svojstva-red">
+                <mat-form-field appearance="outline" id="opis-polje">
+                    <mat-label>Opis</mat-label>
+                    <textarea matInput formControlName="opis" placeholder="Unesite opis programa..." required
+                        minlength="3" maxlength="300"></textarea>
+                    <mat-error
+                        *ngIf="svojstvoForm.get('opis')?.hasError('required') && svojstvoForm.get('opis')?.touched">
+                        Opis je obavezan!
+                    </mat-error>
+                    <mat-error
+                        *ngIf="svojstvoForm.get('opis')?.hasError('minlength') && svojstvoForm.get('opis')?.touched">
+                        Opis mora imati najmanje 3 karaktera!
+                    </mat-error>
+                    <mat-error
+                        *ngIf="svojstvoForm.get('opis')?.hasError('maxlength') && svojstvoForm.get('opis')?.touched">
+                        Opis mo&#382;e imati najvi&#353;e 300 karaktera.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </form>
+    </div>
+    <div class="svojstva-dugmad" mat-dialog-actions>
+        <button mat-raised-button color="primary" (click)="odustani()">Odustani</button>
+        <button mat-raised-button color="primary" [disabled]="!svojstvoForm.valid" (click)="nastavi()">Nastavi</button>
+    </div>
+</div>

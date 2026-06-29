@@ -1,0 +1,126 @@
+<router-outlet></router-outlet>
+
+<div class="stranica-naslov">
+  Info
+</div>
+
+<form [formGroup]="azuriranjeForm" (ngSubmit)="azuriranjeKorisnika()">
+
+  <mat-form-field appearance="outline">
+    <mat-label>Ime</mat-label>
+    <input matInput formControlName="ime" placeholder="Svetozar" required minlength="3" maxlength="30">
+    <mat-icon matSuffix>person</mat-icon>
+    <mat-error *ngIf="azuriranjeForm.get('ime')?.hasError('required') && azuriranjeForm.get('ime')?.touched">
+      Ime je obavezno!
+    </mat-error>
+    <mat-error *ngIf="azuriranjeForm.get('ime')?.hasError('minlength') && azuriranjeForm.get('ime')?.touched">
+      Ime mora imati najmanje tri karaktera!
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Prezime</mat-label>
+    <input matInput formControlName="prezime" placeholder="Vukovi&cacute;" required minlength="3" maxlength="30">
+    <mat-icon matSuffix>person_outline</mat-icon>
+    <mat-error *ngIf="azuriranjeForm.get('prezime')?.hasError('required') && azuriranjeForm.get('prezime')?.touched">
+      Prezime je obavezno!
+    </mat-error>
+    <mat-error *ngIf="azuriranjeForm.get('prezime')?.hasError('minlength') && azuriranjeForm.get('prezime')?.touched">
+      Prezime mora imati najmanje tri karaktera!
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Grad</mat-label>
+    <input matInput formControlName="grad" placeholder="&Ccaron;ajni&ccaron;e" required maxlength="30">
+    <mat-icon matSuffix>location_on</mat-icon>
+    <mat-error *ngIf="azuriranjeForm.get('grad')?.invalid && azuriranjeForm.get('grad')?.touched">
+      Grad je obavezan!
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" placeholder="sv@gmail.com" required maxlength="100" email
+      (keyup)="provjeriDostupnostEmaila()">
+    <mat-icon matSuffix>mail</mat-icon>
+    <mat-error *ngIf=" azuriranjeForm.get('email')?.hasError('required') && azuriranjeForm.get('email')?.touched">
+      Email je obavezan!
+    </mat-error>
+    <mat-error *ngIf="azuriranjeForm.get('email')?.hasError('email') && azuriranjeForm.get('email')?.touched">
+      Email nije validan!
+    </mat-error>
+    <mat-error *ngIf="azuriranjeForm.get('email')?.hasError('emailZauzet') && azuriranjeForm.get('email')?.touched">
+      Email je već zauzet!
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Broj telefona</mat-label>
+    <input matInput formControlName="brojTelefona" placeholder="+38765123456" pattern="^[0-9]*$" />
+    <mat-icon matSuffix>dd </mat-icon>
+    <mat-error
+      *ngIf="azuriranjeForm.get('brojTelefona')?.hasError('pattern') && azuriranjeForm.get('brojTelefona')?.touched">
+      Neispravan format broja telefona.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Stara lozinka</mat-label>
+    <input matInput type="password" formControlName="staraLozinka" pattern="^[a-zA-Z0-9]*$" minlength="8" maxlength="20"
+      #staraLozinkaUlaz />
+    <mat-icon matSuffix (click)="promjeniVidljivostStareLozinke(staraLozinkaUlaz)">
+      {{ staraLozinkaPrikaz ? 'lock' : 'visibility' }}
+    </mat-icon>
+    <mat-error
+      *ngIf="azuriranjeForm.get('staraLozinka')?.hasError('minlength') && azuriranjeForm.get('staraLozinka')?.touched">
+      Lozinka mora imati najmanje 8 karaktera.
+    </mat-error>
+    <mat-error
+      *ngIf="azuriranjeForm.get('staraLozinka')?.hasError('maxlength') && azuriranjeForm.get('staraLozinka')?.touched">
+      Lozinka može imati najviše 20 karaktera.
+    </mat-error>
+    <mat-error
+      *ngIf="azuriranjeForm.get('staraLozinka')?.hasError('pattern') && azuriranjeForm.get('staraLozinka')?.touched">
+      Lozinka ne smije sadržiti specijalne karaktere.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Nova lozinka</mat-label>
+    <input matInput type="password" formControlName="novaLozinka" pattern="^[a-zA-Z0-9]*$" minlength="8" maxlength="20"
+      #novaLozinkaUlaz />
+    <mat-icon matSuffix (click)="promjeniVidljivostNoveLozinke(novaLozinkaUlaz)">
+      {{ novaLozinkaPrikaz ? 'lock' : 'visibility' }}
+    </mat-icon>
+    <mat-error
+      *ngIf="azuriranjeForm.get('novaLozinka')?.hasError('minlength') && azuriranjeForm.get('novaLozinka')?.touched">
+      Lozinka mora imati najmanje 8 karaktera.
+    </mat-error>
+    <mat-error
+      *ngIf="azuriranjeForm.get('novaLozinka')?.hasError('maxlength') && azuriranjeForm.get('novaLozinka')?.touched">
+      Lozinka može imati najviše 20 karaktera.
+    </mat-error>
+    <mat-error
+      *ngIf="azuriranjeForm.get('novaLozinka')?.hasError('pattern') && azuriranjeForm.get('novaLozinka')?.touched">
+      Lozinka ne smije sadržiti specijalne karaktere.
+    </mat-error>
+  </mat-form-field>
+
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <div>
+      <strong>Avatar:&nbsp;&nbsp;</strong>
+    </div>
+    <div>
+      <img [src]="avatarUrl || 'assets/avatari/0.png'" alt="bez slike" width="60" height="60" class="avatar-slika">
+    </div>
+    <div class="avatar-dugme">
+      <button mat-raised-button type="button" color="accent" (click)="otvoriAvatarDijalog()">Odaberi</button>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <button mat-raised-button color="primary" type="submit" [disabled]="azuriranjeForm.invalid">Azuriraj</button>
+  </div>
+
+</form>

@@ -1,0 +1,26 @@
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .avatar-slika {
+    margin-right: 10px;
+  }
+  
+  .avatar-dugme {
+    margin-left: auto;
+  }
+    
+  .stranica-naslov {
+    font-size: 24px;
+    color: #2196F3;
+    text-align: center;
+    padding: 20px;
+    font-weight: bold;
+  }

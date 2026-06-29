@@ -1,0 +1,36 @@
+
+# ==========================================
+# 1. Lokalni serveri i konfiguracije okruženja
+# ==========================================
+apache-tomcat-9.0.85/
+**/Servers/
+
+# ==========================================
+# 2. JSP aplikacije (Administrator i Savjetnik)
+# ==========================================
+**/build/
+
+# ==========================================
+# 3. Spring Boot Backend (FitnessOnlineAppBackend)
+# ==========================================
+**/target/
+**/fitnessOnline/log/
+# Ignorišemo lokalno sačuvane slike koje se generišu tokom rada aplikacije
+**/fitnessOnline/sacuvaneSlike/*
+# Ali ostavljamo sam folder da struktura ne pukne
+!**/fitnessOnline/sacuvaneSlike/.gitkeep
+
+# ==========================================
+# 4. Angular Frontend (FitnessOnlineAppFrontend)
+# ==========================================
+**/node_modules/
+**/.angular/
+**/dist/
+
+# ==========================================
+# 5. Fajlovi razvojnih alata (Eclipse, IntelliJ, VS Code)
+# ==========================================
+.idea/
+.vscode/
+*.iml
+.metadata/

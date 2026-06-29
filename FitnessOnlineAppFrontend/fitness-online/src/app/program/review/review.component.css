@@ -1,0 +1,160 @@
+mat-sidenav-container {
+    height: calc(100vh - 64px);
+    background-color: #b8e1e1;
+}
+
+mat-sidenav {
+    width: 25%;
+    height: 100%;
+    background-color: #b8e1e1;
+    padding: 10px;
+}
+
+mat-sidenav-content {
+    padding: 20px;
+}
+
+mat-paginator {
+    background-color: #b8e1e1;
+    font-weight: 560;
+    color: #205fa7;
+}
+
+mat-expansion-panel {
+    background-color: #ddf5f5
+}
+
+mat-expansion-panel-header {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+mat-panel-title {
+    color: #205fa7;
+}
+
+@media (max-width: 800px) {
+    mat-sidenav {
+        width: 35%;
+    }
+}
+
+.kartica-kontejner {
+    width: 95%;
+    padding-top: 20px;
+}
+
+.panel-prostor {
+    height: 20px;
+}
+
+.dnevnik-tab-ikonica {
+    margin-right: 8px;
+}
+
+.dnevnik-kontejner {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 400px));
+    gap: 10px;
+    padding: 10px;
+    justify-content: center;
+    text-align: center;
+    background-color: #ddf5f5;
+}
+
+.aktivnost-polje {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.istorija-vrijeme {
+    width: 100%;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.dugme-kontejner {
+    display: grid;
+    grid-auto-flow: column;
+    grid-column-gap: 10px;
+}
+
+.aktivnost-naslov {
+    width: 100%;
+    background-color: #b8e1e1;
+    text-align: center;
+    padding: 30px 0px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #205fa7;
+}
+
+.aktivnost-naslov-datum {
+    font-style: italic;
+    font-size: 18px;
+    margin-left: 10px;
+    color: #45668c;
+}
+
+.aktivnost-kartica {
+    width: 90%;
+    background-color: #ddf5f5;
+    border-radius: 10%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.aktivnost-naziv {
+    color: #205fa7;
+    width: 100%;
+}
+
+.aktivnost-sadrzaj-kontejner {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0px;
+}
+
+.aktivnost-sadrzaj-vrijednost {
+    min-width: 50px;
+    font-style: italic;
+    font-weight: 500;
+    color: #205fa7;
+    background-color: #b8e1e1;
+    border-radius: 20%;
+    padding: 7px;
+}
+
+.masa-polje {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.dijagram-kontejner {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+#dijagram-aktivnosti {
+    width: 80%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+#dijagram-kilogrami {
+    width: 80%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+}

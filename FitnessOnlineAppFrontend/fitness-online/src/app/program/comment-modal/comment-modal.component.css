@@ -1,0 +1,87 @@
+ .komentar-kontejner {
+     background-color: #ddf5f5;
+ }
+
+ .komentar-kontejner h1 {
+     text-align: center;
+     font-weight: bold;
+     color: #205fa7;
+ }
+
+ .komentar-kartica {
+     width: 90%;
+     background-color: #ddf5f5;
+     border-radius: 10%;
+     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+     display: block;
+     margin-left: auto;
+     margin-right: auto;
+     margin-bottom: 20px;
+ }
+
+ .komentar-slika {
+     background-size: cover;
+ }
+
+ .komentar-ime {
+     margin-top: 8px;
+     margin-left: 10px;
+     color: #205fa7;
+ }
+
+ .komentar-vrijeme {
+     color: gray;
+     font-size: 14px;
+     margin-top: 9px;
+     margin-left: 20px;
+ }
+
+ .komentar-tekst-kontejner {
+     margin-left: 8px;
+     display: block;
+     margin-top: auto;
+     margin-bottom: auto;
+ }
+
+ .komentar-tekst {
+     margin-left: 40px;
+     font-style: italic;
+     vertical-align: 30%;
+     color: black;
+ }
+
+ mat-paginator {
+     background-color: #b8e1e1;
+     font-weight: 560;
+     color: #205fa7;
+     border-radius: 10px;
+     width: 80%;
+     margin-left: auto;
+     margin-right: auto;
+     margin-bottom: 15px;
+ }
+
+ .komentar-dodaj-zatvori-kontejner {
+     display: flex;
+     justify-content: space-around;
+ }
+
+ .komentar-dodaj-kontejner {
+     width: 50%;
+     margin-left: 22px;
+ }
+
+ mat-expansion-panel {
+     background-color: #ddf5f5
+ }
+
+ mat-expansion-panel-header {
+     text-align: center;
+     font-weight: bold;
+     font-size: 16px;
+ }
+
+ mat-panel-title {
+     color: #205fa7;
+ }
+ 

@@ -1,0 +1,34 @@
+mat-sidenav {
+    width: 200px;
+}
+
+mat-sidenav-content {
+    padding: 16px;
+}
+
+.logo-slika {
+    margin-right: 35px;
+    margin-top: 10px;
+    border-radius: 10%;
+    width: 150px;
+    height: 50px;
+}
+
+.menu-spacer {
+    flex: 1 1 auto;
+}
+
+.avatar-slika {
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.korisnik-ime {
+    font-size: 17px;
+    color: rgb(92, 210, 208);
+    text-align: center;
+    padding: 0px 0px 35px 20px;
+    font-weight: bold;
+    font-style: italic;
+    line-height: 4.8;
+}

@@ -1,0 +1,35 @@
+mat-form-field {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.kupovina-kontejner {
+    background-color: #ddf5f5;
+}
+
+.kupovina-kontejner h1 {
+    text-align: center;
+    font-weight: bold;
+    color: #205fa7;
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.kupovina-radio-group {
+    display: flex;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.dugme-kontejner {
+    display: grid;
+    grid-auto-flow: column;
+    grid-column-gap: 20px;
+}

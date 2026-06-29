@@ -1,0 +1,22 @@
+<div class="stranica-naslov">
+  Aktivacija naloga
+</div>
+
+<form [formGroup]="aktivacijaForm" (ngSubmit)="aktivacijaKorisnika()">
+
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <mat-label>Kliknite na dugme za uspješno aktiviranje naloga!</mat-label>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="center center" class="aktivacija-kontejner">
+    <button mat-raised-button color="primary" type="submit">Aktivacija</button>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="center center" class="linkovi-kontejner">
+    <a mat-raised-button color="accent" routerLink="../../home"><mat-icon>home</mat-icon>
+      <strong>Početna</strong></a>&nbsp;
+    <a mat-raised-button color="primary" routerLink="../../auth/login"><mat-icon>login</mat-icon>
+      <strong>Prijava</strong></a>
+  </div>
+
+</form>

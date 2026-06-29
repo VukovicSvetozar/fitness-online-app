@@ -1,0 +1,118 @@
+<app-menu></app-menu>
+<mat-sidenav-container>
+    <mat-sidenav-content>
+        <mat-tab-group>
+
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="poruka-tab-ikonica">supervisor_account</mat-icon> Savjetnik
+                </ng-template>
+                <div class="stranica-naslov">
+                    Poruke savjetnika
+                </div>
+                <form [formGroup]="savjetnikForm" (ngSubmit)="posaljiPorukuSavjetniku()" class="savjetnici-form">
+                    <mat-form-field appearance="outline" class="savjetnici-izbor">
+                        <mat-label>Odaberi savjetnika</mat-label>
+                        <mat-select formControlName="odabraniSavjetnik" placeholder="Odaberi">
+                            <mat-option *ngFor="let savjetnik of savjetnici" [value]="savjetnik">{{ savjetnik
+                                }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="savjetnici-naslov">
+                        <mat-label>Naslov</mat-label>
+                        <input matInput formControlName="naslov" placeholder="Naslov" required minlength="3"
+                            maxlength="30">
+                        <mat-icon matSuffix>subject</mat-icon>
+                        <mat-error
+                            *ngIf="savjetnikForm.get('naslov')?.hasError('required') && savjetnikForm.get('naslov')?.touched">
+                            Naslov je obavezan!
+                        </mat-error>
+                        <mat-error
+                            *ngIf="savjetnikForm.get('naslov')?.hasError('minlength') && savjetnikForm.get('naslov')?.touched">
+                            Naslov mora imati najmanje tri karaktera!
+                        </mat-error>
+                        <mat-error
+                            *ngIf="savjetnikForm.get('naslov')?.hasError('maxlength') && savjetnikForm.get('naslov')?.touched">
+                            Naslov mo&#382;e imati najvi&#353;e 30 karaktera.
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="savjetnici-tekst">
+                        <mat-label>Poruka</mat-label>
+                        <textarea matInput formControlName="tekst" placeholder="Unesite poruku..." required
+                            minlength="3" maxlength="300"></textarea>
+                        <mat-error
+                            *ngIf="savjetnikForm.get('tekst')?.hasError('required') && savjetnikForm.get('tekst')?.touched">
+                            Tekst je obavezan!
+                        </mat-error>
+                        <mat-error
+                            *ngIf="savjetnikForm.get('tekst')?.hasError('minlength') && savjetnikForm.get('tekst')?.touched">
+                            Tekst mora imati najmanje tri karaktera!
+                        </mat-error>
+                        <mat-error
+                            *ngIf="savjetnikForm.get('tekst')?.hasError('maxlength') && savjetnikForm.get('tekst')?.touched">
+                            Tekst mo&#382;e imati najvi&#353;e 300 karaktera.
+                        </mat-error>
+                    </mat-form-field>
+                    <div fxLayout="row" fxLayoutAlign="center center">
+                        <button mat-raised-button color="primary" type="submit"
+                            [disabled]="savjetnikForm.invalid">Po&#353;alji
+                            poruku</button>
+                    </div>
+                </form>
+            </mat-tab>
+
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="poruka-tab-ikonica">forum</mat-icon> Korisnici
+                </ng-template>
+                <div class="stranica-naslov">
+                    Poruke korisnika
+                </div>
+                <form [formGroup]="korisniciForm" (ngSubmit)="posaljiPorukuKorisniku()" class="korisnici-form">
+                    <div class="korisnici-red-1">
+                        <mat-form-field appearance="outline" class="korisnici-izbor">
+                            <mat-label>Odaberi korisnika</mat-label>
+                            <mat-select formControlName="odabraniKorisnik" placeholder="Odaberi"
+                                (selectionChange)="vratiPorukeKorisnika()">
+                                <mat-option *ngFor="let korisnik of korisnici" [value]="korisnik">{{ korisnik
+                                    }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="korisnici-poruka-unos">
+                            <mat-label>Unesite poruku</mat-label>
+                            <input matInput formControlName="tekstPoruke" placeholder="Poruka" required minlength="3"
+                                maxlength="80">
+                            <mat-icon matSuffix>message</mat-icon>
+                            <mat-error
+                                *ngIf="korisniciForm.get('tekstPoruke')?.hasError('required') && korisniciForm.get('tekstPoruke')?.touched">
+                                Poruka je obavezna!
+                            </mat-error>
+                            <mat-error
+                                *ngIf="korisniciForm.get('tekstPoruke')?.hasError('minlength') && korisniciForm.get('tekstPoruke')?.touched">
+                                Poruka mora imati najmanje tri karaktera!
+                            </mat-error>
+                            <mat-error
+                                *ngIf="korisniciForm.get('tekstPoruke')?.hasError('maxlength') && korisniciForm.get('tekstPoruke')?.touched">
+                                Poruka mo&#382;e imati najvi&#353;e 80 karaktera.
+                            </mat-error>
+                        </mat-form-field>
+                        <button mat-raised-button color="primary" type="submit" [disabled]="korisniciForm.invalid">
+                            Pošalji
+                        </button>
+                    </div>
+                    <div class="korisnici-red-2">
+                        <mat-label class="korisnici-poruka-naslov">Komunikacija</mat-label>
+                        <mat-list appearance="outline">
+                            <mat-list-item *ngFor="let poruka of porukeKorisnika">
+                                <span class="korisnici-poruka-posiljalac">{{ poruka.korisnickoImePosiljalac }}:</span>
+                                <span class="korisnici-poruka-vrijeme">({{ poruka.vrijemePoruke | date:'yyyy/MM/dd HH:mm:ss' }})</span>
+                                <span class="korisnici-poruka-tekst">{{ poruka.tekstPoruke }}</span>
+                            </mat-list-item>
+                        </mat-list>
+                    </div>
+                </form>
+
+            </mat-tab>
+        </mat-tab-group>
+    </mat-sidenav-content>
+</mat-sidenav-container>

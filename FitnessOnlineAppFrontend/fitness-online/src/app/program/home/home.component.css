@@ -1,0 +1,235 @@
+mat-sidenav-container {
+  height: calc(100vh - 64px);
+  background-color: #b8e1e1;
+}
+
+mat-sidenav {
+  width: 25%;
+  height: 100%;
+  background-color: #b8e1e1;
+  padding: 10px;
+}
+
+mat-paginator {
+  background-color: #b8e1e1;
+  font-weight: 560;
+  color: #205fa7;
+}
+
+@media (max-width: 800px) {
+  mat-sidenav {
+    width: 35%;
+  }
+}
+
+.program-kontejner {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 250px));
+  gap: 10px;
+  padding: 10px;
+  justify-content: center;
+  text-align: center;
+  background-color: #ddf5f5;
+  padding-left: 50px;
+}
+
+.program-kartica {
+  border-radius: 5%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #b8e1e1;
+  padding: 4px;
+  border: 2px solid rgb(128, 128, 128);
+}
+
+.kartica-zaglavlje {
+  background-color: #b8e1e1;
+  height: 35px;
+  padding: 5px 0px;
+}
+
+.kartica-naslov {
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  color: #205fa7;
+}
+
+.kartica-podnaslov {
+  text-align: center;
+  font-size: 10px;
+  font-weight: bold;
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+.kartica-poster-kontejner {
+  height: 150px;
+  background-color: #b8e1e1;
+}
+
+.kartica-poster {
+  height: 140px;
+  border-radius: 10%;
+}
+
+.program-kartica-sadrzaj {
+  display: flex;
+  justify-content: space-between;
+  height: 35px;
+}
+
+.program-kartica-sadrzaj-cijena {
+  padding: 5px;
+  font-size: 11px;
+  font-style: italic;
+  font-weight: 550;
+  color: #205fa7;
+}
+
+.program-kartica-sadrzaj-valuta {
+  padding: 5px;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 450;
+  color: black;
+}
+
+.program-kartica-sadrzaj-stavka {
+  padding: 3px;
+}
+
+.program-kartica-sadrzaj-dugme {
+  font-size: 12px;
+  height: 25px;
+  border-radius: 10%;
+}
+
+.filtriranje-kontejner {
+  width: 95%;
+  padding-top: 20px;
+}
+
+mat-expansion-panel {
+  background-color: #ddf5f5
+}
+
+mat-expansion-panel-header {
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+mat-panel-title {
+  color: #205fa7;
+}
+
+.filtriranje-kategorija {
+  width: 100%;
+}
+
+.filtriranje-tezina {
+  width: 100%;
+}
+
+.filtriranje-lokacija {
+  width: 100%;
+}
+
+.filtriranje-polje {
+  width: 100%;
+}
+
+.filtriranje-stanje {
+  width: 100%;
+  margin-left: 5px;
+  margin-bottom: 20px;
+}
+
+.filtriranje-stanje-element {
+  margin: 10px;
+}
+
+.filtriranje-cijena {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filtriranje-cijena-min {
+  margin-right: 5px;
+}
+
+.filtriranje-cijena-max {
+  margin-left: 5px;
+}
+
+.filtriranje-vrijeme {
+  width: 100%;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.filtriranje-vrijeme-hint {
+  margin-left: 20px;
+  font-size: 9px;
+}
+
+.filtriranje-trajanje {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filtriranje-trajanje-min {
+  margin-right: 5px;
+}
+
+.filtriranje-trajanje-max {
+  margin-left: 5px;
+}
+
+.dugme-kontejner {
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 10px;
+}
+
+.panel-prostor {
+  height: 20px;
+}
+
+.sortiranje-kontejner {
+  width: 95%;
+  padding-top: 20px;
+}
+
+.sortiranje-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+  align-items: flex-start;
+}
+
+.sortiranje-radio-button {
+  margin: 5px;
+}
+
+.vijesti-kontejner {
+  width: 95%;
+  padding-top: 20px;
+}
+
+.vijesti-kartica {
+  margin-bottom: 10px;
+  background-color: hsl(180, 41%, 80%);
+  border-radius: 5%;
+  padding: 15px 7px;
+  text-align: center;
+}
+
+.vijesti-kartica a {
+  font-size: 14px;
+  text-decoration: none;
+  color: #205fa7;
+  font-weight: 565;
+}

@@ -1,0 +1,238 @@
+<app-menu></app-menu>
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened>
+
+        <mat-accordion class="kartica-kontejner">
+            <mat-expansion-panel #panelAktivnost>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Nova aktivnost
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div>
+                    <form [formGroup]="aktivnostForm" (ngSubmit)="dodajAktivnost()">
+                        <mat-form-field class="aktivnost-polje" appearance="outline">
+                            <mat-label>Naziv vježbe</mat-label>
+                            <input matInput formControlName="nazivVjezbe" placeholder="Naziv vježbe" minlength="3"
+                                maxlength="30" pattern="^[a-zA-Z0-9_ ]*$" required>
+                            <mat-icon matSuffix>subject</mat-icon>
+                            <mat-error
+                                *ngIf="aktivnostForm.get('nazivVjezbe')?.hasError('pattern') && aktivnostForm.get('nazivVjezbe')?.touched">
+                                Ne mogu specijalni karakteri!
+                            </mat-error>
+                            <mat-error
+                                *ngIf="aktivnostForm.get('nazivVjezbe')?.hasError('minlength') && aktivnostForm.get('nazivVjezbe')?.touched">
+                                Minimalno 3 karaktera!
+                            </mat-error>
+                            <mat-error
+                                *ngIf="aktivnostForm.get('nazivVjezbe')?.hasError('maxlength') && aktivnostForm.get('nazivVjezbe')?.touched">
+                                Maksimalno 30 karaktera!
+                            </mat-error>
+                            <mat-error
+                                *ngIf="aktivnostForm.get('nazivVjezbe')?.hasError('required') && aktivnostForm.get('nazivVjezbe')?.touched">
+                                Naziv vježbe je obavezan!
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="aktivnost-polje" appearance="outline">
+                            <mat-label>Kategorija</mat-label>
+                            <mat-select formControlName="kategorija" required>
+                                <mat-option *ngFor="let kategorija of kategorije" [value]="kategorija.id">
+                                    {{kategorija.naziv}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error
+                                *ngIf="aktivnostForm.get('kategorija')?.hasError('required') && aktivnostForm.get('kategorija')?.touched">
+                                Kategorija je obavezna!
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="aktivnost-polje" appearance="outline">
+                            <mat-label>Intezitet</mat-label>
+                            <mat-select formControlName="intezitet" required>
+                                <mat-option value="lako">Lako</mat-option>
+                                <mat-option value="umjereno">Umjereno</mat-option>
+                                <mat-option value="tesko">Teško</mat-option>
+                            </mat-select>
+                            <mat-error
+                                *ngIf="aktivnostForm.get('intezitet')?.hasError('required') && aktivnostForm.get('intezitet')?.touched">
+                                Intezitet je obavezan!
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="aktivnost-polje" appearance="outline">
+                            <mat-label>Trajanje</mat-label>
+                            <input matInput formControlName="trajanje" placeholder="minuta" required pattern="^[0-9]*$">
+                            <mat-icon matSuffix>subject</mat-icon>
+                            <mat-error
+                                *ngIf="aktivnostForm.get('trajanje')?.hasError('pattern') && aktivnostForm.get('trajanje')?.touched">
+                                Potrebno je unijeti broj!
+                            </mat-error>
+                            <mat-error
+                                *ngIf="aktivnostForm.get('trajanje')?.hasError('required') && aktivnostForm.get('trajanje')?.touched">
+                                Trajanje je obavezno!
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="aktivnost-polje" appearance="outline">
+                            <mat-label>Broj ponavljanja</mat-label>
+                            <input matInput formControlName="brojPonavljanja" placeholder="broj ponavljanja" required
+                                pattern="^[0-9]*$">
+                            <mat-icon matSuffix>subject</mat-icon>
+                            <mat-error
+                                *ngIf="aktivnostForm.get('brojPonavljanja')?.hasError('pattern') && aktivnostForm.get('brojPonavljanja')?.touched">
+                                Potrebno je unijeti broj!
+                            </mat-error>
+                            <mat-error
+                                *ngIf="aktivnostForm.get('brojPonavljanja')?.hasError('required') && aktivnostForm.get('brojPonavljanja')?.touched">
+                                Broj ponavljanja je obavezan!
+                            </mat-error>
+                        </mat-form-field>
+                        <div fxLayout="row" fxLayoutAlign="center center" class="dugme-kontejner">
+                            <button mat-raised-button color="primary" type="submit"
+                                [disabled]="aktivnostForm.invalid">Dodaj</button>
+                        </div>
+                    </form>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+        <div class="panel-prostor"></div>
+
+        <mat-accordion class="kartica-kontejner">
+            <mat-expansion-panel #panelIstorija>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Istorija
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div>
+                    <form [formGroup]="istorijaForm" (ngSubmit)="prikaziAktivnosti(true)">
+                        <mat-form-field class="istorija-vrijeme" appearance="outline">
+                            <input matInput [matDatepicker]="picker" formControlName="datum"
+                                placeholder="Odaberite datum">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        <div fxLayout="row" fxLayoutAlign="center center">
+                            <button mat-raised-button color="primary" type="submit"
+                                [disabled]="istorijaForm.invalid">Prikaži</button>
+                        </div>
+                    </form>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+        <div class="panel-prostor"></div>
+
+        <mat-accordion class="kartica-kontejner">
+            <mat-expansion-panel #panelMasa>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Kilogrami
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div>
+                    <form [formGroup]="masaForm" (ngSubmit)="unesiMasu()">
+                        <mat-form-field class="masa-polje" appearance="outline">
+                            <mat-label>Masa</mat-label>
+                            <input matInput formControlName="masa" placeholder="Unos kg" required
+                                pattern="^\d+(\.\d{1,2})?$">
+                            <mat-icon matSuffix>subject</mat-icon>
+                            <mat-error
+                                *ngIf="masaForm.get('masa')?.hasError('pattern') && masaForm.get('masa')?.touched">
+                                Potrebno je unijeti broj!
+                            </mat-error>
+                            <mat-error
+                                *ngIf="masaForm.get('masa')?.hasError('required') && masaForm.get('masa')?.touched">
+                                Unos je obavezan!
+                            </mat-error>
+                        </mat-form-field>
+                        <div fxLayout="row" fxLayoutAlign="center center">
+                            <button mat-raised-button color="primary" type="submit"
+                                [disabled]="masaForm.invalid">Dodaj</button>
+                        </div>
+                    </form>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+        <div class="panel-prostor"></div>
+
+        <mat-accordion class="kartica-kontejner">
+            <mat-expansion-panel #panelPdf>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Snimi
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div>
+                    <form [formGroup]="pdfForm" (ngSubmit)="snimi()">
+                        <div fxLayout="row" fxLayoutAlign="center center">
+                            <button mat-raised-button color="primary" type="submit">Snimi</button>
+                        </div>
+                    </form>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <mat-tab-group>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="dnevnik-tab-ikonica">shopping_cart</mat-icon> Aktivnosti
+                </ng-template>
+                <div class="aktivnost-naslov">Lista aktivnosti za: <span
+                        class="aktivnost-naslov-datum">{{odabraniDatum}}</span></div>
+                <div class="dnevnik-kontejner">
+                    <div *ngFor="let aktivnost of aktivnosti">
+                        <mat-card class="aktivnost-kartica">
+                            <mat-card-header>
+                                <mat-card-title class="aktivnost-naziv">{{aktivnost?.naziv}}</mat-card-title>
+                                <div mat-card-avatar>
+                                    <mat-icon class="dnevnik-tab-ikonica">whatshot</mat-icon>
+                                </div>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <div class="aktivnost-sadrzaj-kontejner">
+                                    <span class="aktivnost-sadrzaj-vrijednost"> {{aktivnost?.nazivKategorije}}
+                                    </span>
+                                    <span class="aktivnost-sadrzaj-vrijednost"> {{aktivnost?.intezitet}}
+                                    </span>
+                                </div>
+                                <div class="aktivnost-sadrzaj-kontejner">
+                                    <span class="aktivnost-sadrzaj-vrijednost"> {{aktivnost?.brojPonavljanja}}
+                                        ponavljanja
+                                    </span>
+                                    <span class="aktivnost-sadrzaj-vrijednost"> {{aktivnost?.trajanje}} minuta
+                                    </span>
+                                </div>
+                                <mat-chip-option (click)="zavrsi(aktivnost)"
+                                    [disabled]="aktivnost.zavrseno">Završi</mat-chip-option>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="dnevnik-tab-ikonica">remove_shopping_cart</mat-icon> Pregled
+                </ng-template>
+                <div class="dijagram-kontejner">
+
+                    <div id="dijagram-aktivnosti">
+                        <canvas #aktivnostiDijagram baseChart [datasets]="aktivnostiDijagramPodaci"
+                            [labels]="aktivnostiDijagramLabele" [options]="aktivnostiDijagramOpcije"
+                            [legend]="aktivnostiDijagramLegenda">
+                        </canvas>
+                    </div>
+
+                    <div id="dijagram-kilogrami">
+                        <canvas #kilogramiDijagram baseChart [datasets]="kilogramiDijagramPodaci"
+                            [labels]="kilogramiDijagramLabele" [options]="kilogramiDijagramOpcije"
+                            [legend]="kilogramiDijagramLegenda">
+                        </canvas>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-sidenav-content>
+</mat-sidenav-container>

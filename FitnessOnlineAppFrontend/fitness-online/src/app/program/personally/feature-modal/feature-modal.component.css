@@ -1,0 +1,29 @@
+mat-form-field {
+  width: 50%;
+}
+
+.svojstva-kontejner h1 {
+  text-align: center;
+  color: #3F51B5;
+}
+
+.svojstva-red {
+  display: flex;
+  gap: 30px;
+  height: 80px;
+  justify-content: space-around;
+  margin: 22px auto;
+}
+
+#opis-polje {
+  width: 80%;
+}
+
+.svojstva-dugmad {
+  display: flex;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  gap: 10px;
+  margin-bottom: 20px;
+}

@@ -1,0 +1,19 @@
+.avatar-kontejner h1 {
+  text-align: center;
+}
+
+.avatar-red {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.avatar-odabrani {
+  transform: scale(1.5);
+}
+
+.avatar-dugmad {
+  display: flex;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+}

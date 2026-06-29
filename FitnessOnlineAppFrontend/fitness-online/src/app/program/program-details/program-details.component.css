@@ -1,0 +1,340 @@
+.program-kontejner {
+  background-color: #ddf5f5;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.program-kolona-galerija {
+  flex: 1;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 15px;
+  margin-right: 15px;
+  min-width: 250px;
+  max-width: 500px;
+}
+
+.program-kolona-svojstva {
+  flex: 1;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 15px;
+  margin-left: 15px;
+  min-width: 250px;
+  max-width: 500px;
+}
+
+@media (max-width: 500px) {
+  .program-kontejner {
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .program-kolona {
+    margin: 0;
+    min-width: 100px;
+    max-width: none;
+  }
+}
+
+.program-kolona {
+  border: 2px solid rgb(128, 128, 128);
+  border-radius: 3%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #b8e1e1;
+  padding: 5px;
+}
+
+.program-info {
+  background-color: #ddf5f5;
+  border-radius: 6%;
+  height: 50px;
+  padding: 5px 0px;
+  text-align: center;
+  width: 95%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+}
+
+.program-info-naslov {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  color: #205fa7;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.program-info-podnaslov {
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+.slika-kontejner {
+  position: relative;
+  width: 90%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slika-lijeva-strelica {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  left: 12px;
+  font-size: 45px;
+  color: #fff;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.slika-desna-strelica {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 12px;
+  font-size: 45px;
+  color: #fff;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.slika-slajd {
+  height: 330px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+}
+
+.slika-tacka-kontejner {
+  display: flex;
+  justify-content: center;
+}
+
+.slika-tacka {
+  cursor: pointer;
+  margin-top: 3px;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.slika-tacka-aktivna {
+  background-color: #717171;
+}
+
+.slika-tacka-neaktivna {
+  background-color: #bbb;
+}
+
+.korisnik-info-naslov {
+  height: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: italic;
+  color: #205fa7;
+  margin-top: 25px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.korisnik-info-kartica {
+  width: 90%;
+  background-color: #ddf5f5;
+  border-radius: 5%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+.korisnik-info-slika {
+  background-size: cover;
+}
+
+.korisnik-info-ime {
+  margin-top: 8px;
+  margin-left: 20px;
+}
+
+.korisnik-info-podatak-kontejner {
+  margin-left: 8px;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.korisnik-info-podatak-kontejner .mat-icon {
+  color: #205fa7;
+}
+
+.korisnik-info-podatak {
+  margin-left: 40px;
+  font-style: italic;
+  vertical-align: 30%;
+}
+
+.program-cijena-kontejner {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.program-cijena-kartica {
+  height: 100%;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #ddf5f5;
+  margin-left: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.program-cijena-naziv {
+  font-size: 16px;
+  font-weight: bold;
+  color: #205fa7;
+  margin-right: 6px;
+}
+
+.program-cijena-vrijednost {
+  font-size: 30px;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.program-cijena-valuta {
+  font-size: 24px;
+}
+
+.program-nivo-tezine-kontejner {
+  margin-left: 30px;
+}
+
+.program-nivo-tezine-vrijednost {
+  background-color: #ddf5f5;
+  border-radius: 20%;
+  padding: 7px;
+  font-weight: bold;
+}
+
+.program-tip-lokacije-kontejner {
+  margin-right: 20px;
+}
+
+.program-tip-lokacije-vrijednost {
+  background-color: #ddf5f5;
+  border-radius: 20%;
+  padding: 7px;
+  font-weight: bold;
+}
+
+.program-osobina-kontejner {
+  background-color: #ddf5f5;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.program-osobina-kartica {
+  margin-bottom: 20px;
+}
+
+.program-osobina-tekst {
+  font-size: 15px;
+  margin: 0;
+  font-weight: bold;
+  color: #205fa7;
+}
+
+.program-osobina-vrijednost {
+  font-size: 17px;
+  margin: 0;
+}
+
+.program-specificne-osobine-naslov {
+  height: 30px;
+  text-align: center;
+  font-weight: bold;
+  font-style: italic;
+  border-radius: 12px;
+  padding-top: 10px;
+  font-size: 16px;
+  color: #205fa7;
+}
+
+.program-specificne-osobine-kontejner {
+  background-color: #ddf5f5;
+  border-radius: 12px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.program-specificne-osobine-kartica {
+  margin-bottom: 20px;
+  width: 200px;
+}
+
+.program-specificne-osobine-tekst {
+  font-size: 15px;
+  font-weight: bold;
+  color: #205fa7;
+  margin: 0;
+}
+
+.program-specificne-osobine-vrijednost {
+  font-size: 17px;
+  margin: 0;
+}
+
+.dugmad-kontejner {
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 20px;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.ucestvovanje-snackbar {
+  background-color: #ff0000;
+  color: red;
+  font-size: 16px;
+}
+
+.custom-snackbar {
+  background-color: #ff0000; /* Crvena pozadina */
+  color: #ffffff; /* Beli tekst */
+  font-size: 16px; /* Veličina fonta */
+}

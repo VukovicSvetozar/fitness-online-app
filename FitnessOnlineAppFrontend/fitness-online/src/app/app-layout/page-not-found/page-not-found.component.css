@@ -1,0 +1,17 @@
+mat-card {
+  margin: 50px auto;
+  max-width: 400px;
+  padding: 20px;
+  text-align: center;
+  background-color: #b8e1e1;
+}
+
+mat-card-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 20px;
+}

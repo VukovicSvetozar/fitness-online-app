@@ -1,0 +1,25 @@
+<div class="slika-kontejner">
+    <h1 mat-dialog-title>Odaberi slike</h1>
+    <div mat-dialog-content>
+        <mat-form-field>
+            <div>
+                <mat-toolbar>
+                    <input matInput readonly value='Odaberi slike'/>
+                    <button mat-flat-button color="primary" [disabled]="!selektovaniPoster" (click)="dodajSlike()">
+                        Dodaj
+                    </button>
+                </mat-toolbar>
+                <input type="file" id="fileInput" name="fileInput" accept="image/*" multiple
+                    (change)="odaberiSlike($event)" />
+            </div>
+        </mat-form-field>
+        <mat-grid-list cols="3" gutterSize="30px" rowHeight="140px">
+            <mat-grid-tile *ngFor="let pregled of preglediSlika;" [class.selektovano]="pregled === selektovaniPoster"
+                (click)="selektujPoster(pregled)">
+                <img [src]="pregled" class="pregledSlike">
+            </mat-grid-tile> </mat-grid-list>
+    </div>
+    <div class="slika-dugmad" mat-dialog-actions>
+        <button mat-raised-button color="primary" [disabled]="!omoguciKraj" (click)="zavrsi()">Završi</button>
+    </div>
+</div>

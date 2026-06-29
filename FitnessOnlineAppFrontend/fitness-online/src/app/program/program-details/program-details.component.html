@@ -1,0 +1,128 @@
+<app-menu></app-menu>
+
+<div class="program-kontejner">
+    <div class="program-kolona-galerija  program-kolona">
+        <div class="program-info">
+            <div class="program-info-naslov">{{odabraniProgram?.naziv}}</div>
+            <div class="program-info-podnaslov">{{odabraniProgram?.nazivKategorije}}</div>
+        </div>
+        <div class="slika-kontejner">
+            <div>
+                <div (click)="prethodnaSlika()" class="slika-lijeva-strelica">❰</div>
+                <div (click)="sledecaSlika()" class="slika-desna-strelica">❱</div>
+            </div>
+            <div class="slika-slajd" [ngStyle]="{ 'background-image': vratiTrenutniSlajdUrl() }"></div>
+            <div class="slika-tacka-kontejner">
+                <div *ngFor="let slajd of slikeProgramaUrl; let slajdIndeks = index" (click)="idiNaSlajd(slajdIndeks)">
+                    <span class="slika-tacka"
+                        [ngClass]="{'slika-tacka-aktivna': slajdIndeks === slikeTrenutniIndeks, 'slika-tacka-neaktivna': slajdIndeks !== slikeTrenutniIndeks}"></span>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="korisnik-info-naslov">Informacije o instruktoru</div>
+            <mat-card class="korisnik-info-kartica">
+                <mat-card-header>
+                    <div mat-card-avatar class="korisnik-info-slika"
+                        [style.background-image]="'url(' + avatarUrl + ')'">
+                    </div>
+                    <mat-card-title class="korisnik-info-ime">{{odabraniProgram?.korisnickoIme}}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="korisnik-info-podatak-kontejner">
+                        <mat-icon>location_on</mat-icon> <span class="korisnik-info-podatak"> {{odabraniProgram?.grad}}
+                        </span>
+                    </div>
+                    <div class="korisnik-info-podatak-kontejner">
+                        <mat-icon>date_range</mat-icon> <span class="korisnik-info-podatak">
+                            {{odabraniProgram?.datumPristupa}} </span>
+                    </div>
+                    <div class="korisnik-info-podatak-kontejner">
+                        <mat-icon>phone</mat-icon> <span class="korisnik-info-podatak">
+                            {{odabraniProgram?.brojTelefona}} </span>
+                    </div>
+                    <div class="korisnik-info-podatak-kontejner">
+                        <mat-icon>mail</mat-icon> <span class="korisnik-info-podatak"> {{odabraniProgram?.email}}
+                        </span>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center" class="dugmad-kontejner" *ngIf="prijavljen">
+            <div *ngIf="dozvoljenaKupovina">
+                <button mat-raised-button type="button" color="primary"
+                    (click)="otvoriKupovinaDijalog()"><mat-icon>shopping_cart</mat-icon><strong>
+                        Kupovina</strong></button>
+            </div>
+            <div *ngIf="dozvoljenoBrisanje">
+                <button mat-raised-button type="button" color="primary"
+                    (click)="obrisiProgram()"><mat-icon>delete</mat-icon><strong> Brisanje</strong></button>
+            </div>
+            <div *ngIf="dozvoljenKomentar">
+                <button mat-raised-button type="button" color="primary"
+                    (click)="otvoriKomentariDijalog()"><mat-icon>comment</mat-icon><strong> Komentari</strong></button>
+            </div>
+            <div *ngIf="dozvoljenZavrsetak">
+                <button mat-raised-button type="button" color="primary"
+                    (click)="zavrsiProgram()"><mat-icon>clear</mat-icon><strong> Završetak</strong></button>
+            </div>
+            <div *ngIf="dozvoljenoUcestvovanje">
+                <button mat-raised-button type="button" color="primary"
+                    (click)="ucestvuj()"><mat-icon>play_arrow</mat-icon><strong> Učestvovanje</strong></button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="program-kolona-svojstva program-kolona">
+        <div class="program-cijena-kontejner">
+            <div class="program-cijena-kartica">
+                <span class="program-cijena-naziv">Cijena: </span>
+                <span class="program-cijena-vrijednost">{{odabraniProgram?.cijena | number:'1.2-2'}} </span>
+                <span class="program-cijena-valuta">KM</span>
+            </div>
+            <div class="program-nivo-tezine-kontejner">
+                <div class="program-nivo-tezine-vrijednost">
+                    {{odabraniProgram?.nivoTezine}}
+                </div>
+            </div>
+            <div class="program-tip-lokacije-kontejner">
+                <div class="program-tip-lokacije-vrijednost">
+                    {{odabraniProgram?.tipLokacije}}
+                </div>
+            </div>
+        </div>
+        <div class="program-osobina-kontejner">
+            <div>
+                <div class="program-osobina-kartica">
+                    <h2 class="program-osobina-tekst">Vrijeme objave:</h2>
+                    <p class="program-osobina-vrijednost">{{odabraniProgram?.vrijemeObjave}}</p>
+                </div>
+            </div>
+            <div>
+                <div class="program-osobina-kartica">
+                    <h2 class="program-osobina-tekst">Trajanje:</h2>
+                    <p class="program-osobina-vrijednost">{{odabraniProgram?.trajanje}} dana</p>
+                </div>
+            </div>
+            <div>
+                <div class="program-osobina-kartica">
+                    <h2 class="program-osobina-tekst">Opis:</h2>
+                    <p class="program-osobina-vrijednost">{{odabraniProgram?.opis}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="program-specificne-osobine-naslov">Specifične osobine</div>
+        <div class="program-specificne-osobine-kontejner">
+            <div *ngFor="let osobina of specificneOsobine | keyvalue">
+                <div class="program-specificne-osobine-kartica">
+                    <h2 class="program-specificne-osobine-tekst">{{osobina.key.split('(')[0]}}</h2>
+                    <p class="program-specificne-osobine-vrijednost">{{osobina.value}}</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

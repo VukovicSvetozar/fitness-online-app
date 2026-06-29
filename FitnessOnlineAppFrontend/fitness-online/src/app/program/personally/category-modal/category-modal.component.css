@@ -1,0 +1,18 @@
+.kategorija-kontejner h1 {
+    text-align: center;
+    color: #3F51B5;
+}
+
+.kategorija-polje {
+    display: flex;
+    justify-content: center;
+}
+
+.kategorija-dugmad {
+    display: flex;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    gap: 10px;
+    margin-bottom: 20px;
+}

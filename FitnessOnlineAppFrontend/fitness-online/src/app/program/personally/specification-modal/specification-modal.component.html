@@ -1,0 +1,27 @@
+<div class="specifikacija-kontejner">
+    <h1 mat-dialog-title>Specifične osobine proizvoda</h1>
+    <div mat-dialog-content>
+        <form [formGroup]="specifikacijaForm">
+            <div *ngFor="let specifikacija of listaSpecifikacija" class="specifikacija-elementi">
+                <mat-form-field appearance="outline" class="specifikacija-red">
+                    <mat-label>{{ specifikacija.naziv }}</mat-label>
+                    <input matInput [formControlName]="specifikacija.naziv" required maxlength="50">
+                    <mat-icon matSuffix>info</mat-icon>
+                    <mat-error
+                        *ngIf="specifikacijaForm.get(specifikacija.naziv)?.hasError('required') && specifikacijaForm.get(specifikacija.naziv)?.touched">
+                        Polje {{ specifikacija.naziv }} je obavezno!
+                    </mat-error>
+                    <mat-error
+                        *ngIf="specifikacijaForm.get(specifikacija.naziv)?.hasError('maxlength') && specifikacijaForm.get(specifikacija.naziv)?.touched">
+                        Polje {{ specifikacija.naziv }} mo&#382;e imati najvi&#353;e 50 karaktera.
+                    </mat-error>
+                </mat-form-field>
+                <br>
+            </div>
+        </form>
+    </div>
+    <div class="specifikacija-dugmad" mat-dialog-actions>
+        <button mat-raised-button color="primary" (click)="odustani()">Odustani</button>
+        <button mat-raised-button color="primary" [disabled]="!specifikacijaForm.valid" (click)="nastavi()">Nastavi</button>
+    </div>
+</div>

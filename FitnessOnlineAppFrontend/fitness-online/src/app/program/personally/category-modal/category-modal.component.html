@@ -1,0 +1,17 @@
+<div class="kategorija-kontejner">
+    <h1 mat-dialog-title class="mat-primary">Odaberi kategoriju</h1>
+    <div mat-dialog-content class="kategorija-polje">
+        <mat-form-field>
+            <mat-label>Odaberite:</mat-label>
+            <mat-select [(value)]="odabranaKategorija">
+                <mat-option *ngFor="let kategorija of listaKategorija" [value]="kategorija">
+                    {{kategorija.naziv}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="kategorija-dugmad" mat-dialog-actions>
+        <button mat-raised-button color="primary" (click)="odustani()">Odustani</button>
+        <button mat-raised-button color="primary" [disabled]="!odabranaKategorija" (click)="nastavi()">Nastavi</button>
+    </div>
+</div>

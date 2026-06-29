@@ -1,0 +1,130 @@
+<mat-toolbar color="primary">
+
+    <mat-toolbar-row>
+        <span> <img [src]="logoUrl" alt="bez slike" class="logo-slika">
+        </span>
+
+        <ng-container *ngIf="veciEkran; else manjiEkranHome">
+            <a mat-button routerLink="/program/home">
+                Ponude
+            </a>
+        </ng-container>
+
+        <ng-template #manjiEkranHome>
+            <a mat-icon-button matTooltip="Ponude" routerLink="/program/home">
+                <mat-icon>home</mat-icon>
+            </a>
+        </ng-template>
+
+        <ng-container *ngIf="veciEkran; else manjiEkranPersonally">
+            <a mat-button routerLink="/personally" *ngIf="prijavljen">
+                Programi
+            </a>
+        </ng-container>
+
+        <ng-template #manjiEkranPersonally>
+            <a mat-icon-button matTooltip="Programi" routerLink="/personally" *ngIf="prijavljen">
+                <mat-icon>shopping_cart</mat-icon>
+            </a>
+        </ng-template>
+
+        <ng-container *ngIf="veciEkran; else manjiEkranMessage">
+            <a mat-button routerLink="/message" *ngIf="prijavljen">
+                Poruke
+            </a>
+        </ng-container>
+
+        <ng-template #manjiEkranMessage>
+            <a mat-icon-button matTooltip="Poruke" routerLink="/message" *ngIf="prijavljen">
+                <mat-icon>message</mat-icon>
+            </a>
+        </ng-template>
+
+        <ng-container *ngIf="veciEkran; else manjiEkranRecommendation">
+            <a mat-button routerLink="/recommendation" *ngIf="prijavljen">
+                Preporuke
+            </a>
+        </ng-container>
+
+        <ng-template #manjiEkranRecommendation>
+            <a mat-icon-button matTooltip="Preporuke" routerLink="/recommendation" *ngIf="prijavljen">
+                <mat-icon>recommend</mat-icon>
+            </a>
+        </ng-template>
+
+        <ng-container *ngIf="veciEkran; else manjiEkranReview">
+            <a mat-button routerLink="/review" *ngIf="prijavljen">
+                Dnevnik
+            </a>
+        </ng-container>
+
+        <ng-template #manjiEkranReview>
+            <a mat-icon-button matTooltip="Dnevnik" routerLink="/review" *ngIf="prijavljen">
+                <mat-icon>library_books</mat-icon>
+            </a>
+        </ng-template>
+
+        <span class="menu-spacer"></span>
+
+        <ng-container *ngIf="veciEkran; else manjiEkranInfo">
+            <a mat-button routerLink="/auth/info" *ngIf="prijavljen">
+                Profil
+            </a>
+        </ng-container>
+
+        <ng-template #manjiEkranInfo>
+            <a mat-icon-button matTooltip="Profil" routerLink="/auth/info" *ngIf="prijavljen">
+                <mat-icon>person</mat-icon>
+            </a>
+        </ng-template>
+
+        <div fxLayout="row" fxLayoutAlign="start center" *ngIf="prijavljen">
+            <div *ngIf="veciEkran">
+                <strong class="korisnik-ime">{{korisnickoIme}}&nbsp;&nbsp;</strong>
+            </div>
+            <div>
+                <img [src]="avatarUrl || 'assets/avatari/0.png'" alt="bez slike" width="40" height="40"
+                    class="avatar-slika">
+            </div>
+        </div>
+
+        <ng-container *ngIf="veciEkran && prijavljen; else manjiEkranOdjava">
+            <button mat-button (click)="odjava()">
+                Odjava
+            </button>
+        </ng-container>
+
+        <ng-template #manjiEkranOdjava>
+            <ng-container *ngIf="prijavljen">
+                <button mat-icon-button matTooltip="Odjava" (click)="odjava()">
+                    <mat-icon>logout</mat-icon>
+                </button>
+            </ng-container>
+        </ng-template>
+
+        <ng-container *ngIf="veciEkran; else manjiEkranLogin">
+            <a mat-button routerLink="/auth/login" *ngIf="!prijavljen">
+                Prijava
+            </a>
+        </ng-container>
+
+        <ng-template #manjiEkranLogin>
+            <a mat-icon-button matTooltip="Prijava" routerLink="/auth/login" *ngIf="!prijavljen">
+                <mat-icon>login</mat-icon>
+            </a>
+        </ng-template>
+
+        <ng-container *ngIf="veciEkran; else manjiEkranRegistration">
+            <a mat-button routerLink="/auth/registration" *ngIf="!prijavljen">
+                Registracija
+            </a>
+        </ng-container>
+
+        <ng-template #manjiEkranRegistration>
+            <a mat-icon-button matTooltip="Registracija" routerLink="/auth/registration" *ngIf="!prijavljen">
+                <mat-icon>person_add</mat-icon>
+            </a>
+        </ng-template>
+
+    </mat-toolbar-row>
+</mat-toolbar>

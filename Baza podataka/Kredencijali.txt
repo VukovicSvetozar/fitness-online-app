@@ -1,0 +1,29 @@
+
+	---------------------
+		Administrator
+	---------------------
+	username --	dmnstrtra
+	password --	svtzr65A
+	
+	
+	---------------------
+		  Savjetnici
+	---------------------
+	username --	Ana
+	password --	anaanaana
+	username --	Maja
+	password --	majamajamaja
+	username --	Ema
+	password --	emaemaema
+	
+	
+	
+	---------------------
+		  Korisnici
+	---------------------
+	username --	Ela
+	password --	elaelaela
+	username --	Mia
+	password --	miamiamia
+	username --	Rade
+	password --	raderaderade

@@ -1,0 +1,116 @@
+mat-sidenav-container {
+    height: calc(100vh - 64px);
+    background-color: #b8e1e1;
+}
+
+mat-sidenav-content {
+    padding: 20px;
+}
+
+mat-form-field {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.poruka-tab-ikonica {
+    margin-right: 8px;
+}
+
+.stranica-naslov {
+    font-size: 24px;
+    color: #2196F3;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+.savjetnici-form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.savjetnici-izbor {
+    display: block;
+    width: 250px;
+    margin: 10px auto;
+}
+
+.savjetnici-naslov {
+    width: 50%;
+    min-width: 250px;
+    margin: 10px auto;
+}
+
+.savjetnici-tekst {
+    width: 50%;
+    min-width: 250px;
+    margin: 10px auto;
+}
+
+.savjetnici-tekst textarea {
+    min-height: 150px;
+}
+
+.korisnici-form {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.korisnici-red-1 {
+    display: flex;
+    gap: 20px;
+    justify-content: space-evenly;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.korisnici-izbor {
+    width: 230px;
+}
+
+.korisnici-poruka-unos {
+    width: 530px;
+    height: 80px;
+}
+
+.korisnici-red-2 {
+    min-height: 200px;
+    margin: auto 30px;
+    border: 1px solid gray;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.korisnici-poruka-naslov {
+    display: block;
+    width: 100px;
+    margin: auto;
+    text-align: center;
+    color: #665;
+    font-size: 18px;
+}
+
+.korisnici-poruka-posiljalac {
+    margin-left: 20px;
+    margin-right: 10px;
+    font-weight: bold;
+    color: #665;
+}
+
+.korisnici-poruka-vrijeme {
+    margin-left: 20px;
+    margin-right: 10px;
+    color: #444;
+}
+
+.korisnici-poruka-tekst {
+    word-break: break-word;
+    font-style: italic;
+    text-indent: 30px;
+}

@@ -1,0 +1,68 @@
+<div class="kupovina-kontejner">
+    <h1 mat-dialog-title>Kupovina</h1>
+    <div mat-dialog-content>
+
+        <div>
+            <form [formGroup]="kupovinaForm" (ngSubmit)="kupi()">
+                <mat-label>Odaberi opciju:</mat-label>
+                <mat-radio-group class="kupovina-radio-group" formControlName="kupovinaOpcija"
+                    (change)="kupovinaOpcijaPromjena()">
+                    <mat-radio-button color="primary" value="kartica">
+                        Kartica
+                    </mat-radio-button>
+                    <mat-radio-button color="primary" value="payPal">
+                        Pay Pal
+                    </mat-radio-button>
+                    <mat-radio-button color="primary" value="licno">
+                        Lično
+                    </mat-radio-button>
+                </mat-radio-group>
+                <mat-form-field appearance="outline">
+                    <mat-label>Broj kartice</mat-label>
+                    <input matInput formControlName="brojKartice" placeholder="00001" pattern="^[a-zA-Z0-9_]*$"
+                        minlength="5" maxlength="30">
+                    <mat-icon matSuffix>credit_card</mat-icon>
+                    <mat-error
+                        *ngIf="kupovinaForm.get('brojKartice')?.hasError('pattern') && kupovinaForm.get('brojKartice')?.touched">
+                        Ne mogu specijalni karakteri.
+                    </mat-error>
+                    <mat-error
+                        *ngIf="kupovinaForm.get('brojKartice')?.hasError('minlength') && kupovinaForm.get('brojKartice')?.touched">
+                        Broj kartice mora imati najmanje 5 karaktera.
+                    </mat-error>
+                    <mat-error
+                        *ngIf="kupovinaForm.get('brojKartice')?.hasError('maxlength') && kupovinaForm.get('brojKartice')?.touched">
+                        Broj kartice mora imati najviše 30 karaktera.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Pay Pal</mat-label>
+                    <input matInput formControlName="payPalRacun" placeholder="Abc" pattern="^[a-zA-Z0-9_]*$"
+                        minlength="5" maxlength="30">
+                    <mat-icon matSuffix>monetization_on</mat-icon>
+                    <mat-error
+                        *ngIf="kupovinaForm.get('payPalRacun')?.hasError('pattern') && kupovinaForm.get('payPalRacun')?.touched">
+                        Ne mogu specijalni karakteri.
+                    </mat-error>
+                    <mat-error
+                        *ngIf="kupovinaForm.get('payPalRacun')?.hasError('minlength') && kupovinaForm.get('payPalRacun')?.touched">
+                        Potrebno je najmanje 5 karaktera.
+                    </mat-error>
+                    <mat-error
+                        *ngIf="kupovinaForm.get('payPalRacun')?.hasError('maxlength') && kupovinaForm.get('payPalRacun')?.touched">
+                        Dozvoljeno je najviše 30 karaktera.
+                    </mat-error>
+                </mat-form-field>
+
+                <div fxLayout="row" fxLayoutAlign="center center" class="dugme-kontejner">
+                    <button mat-raised-button color="primary" type="submit"
+                        [disabled]="kupovinaForm.invalid">Kupi</button>
+                    <button mat-raised-button color="primary" (click)="zatvori()">Zatvori</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>

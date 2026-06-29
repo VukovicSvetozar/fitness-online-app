@@ -1,0 +1,138 @@
+<div class="stranica-naslov">
+  Registracija
+</div>
+
+<form [formGroup]="registracijaForm" (ngSubmit)="registracijaKorisnika()">
+
+  <mat-form-field appearance="outline">
+    <mat-label>Ime</mat-label>
+    <input matInput formControlName="ime" placeholder="Svetozar" required minlength="3" maxlength="30">
+    <mat-icon matSuffix>person</mat-icon>
+    <mat-error *ngIf="registracijaForm.get('ime')?.hasError('required') && registracijaForm.get('ime')?.touched">
+      Ime je obavezno!
+    </mat-error>
+    <mat-error *ngIf="registracijaForm.get('ime')?.hasError('minlength') && registracijaForm.get('ime')?.touched">
+      Ime mora imati najmanje tri karaktera!
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Prezime</mat-label>
+    <input matInput formControlName="prezime" placeholder="Vukovi&cacute;" required minlength="3" maxlength="30">
+    <mat-icon matSuffix>person_outline</mat-icon>
+    <mat-error
+      *ngIf="registracijaForm.get('prezime')?.hasError('required') && registracijaForm.get('prezime')?.touched">
+      Prezime je obavezno!
+    </mat-error>
+    <mat-error
+      *ngIf="registracijaForm.get('prezime')?.hasError('minlength') && registracijaForm.get('prezime')?.touched">
+      Prezime mora imati najmanje tri karaktera!
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Grad</mat-label>
+    <input matInput formControlName="grad" placeholder="&Ccaron;ajni&ccaron;e" required maxlength="30">
+    <mat-icon matSuffix>location_on</mat-icon>
+    <mat-error *ngIf="registracijaForm.get('grad')?.invalid && registracijaForm.get('grad')?.touched">
+      Grad je obavezan!
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" placeholder="sv@gmail.com" required maxlength="100" email
+      (keyup)="provjeriDostupnostEmaila()">
+    <mat-icon matSuffix>mail</mat-icon>
+    <mat-error *ngIf=" registracijaForm.get('email')?.hasError('required') && registracijaForm.get('email')?.touched">
+      Email je obavezan!
+    </mat-error>
+    <mat-error *ngIf="registracijaForm.get('email')?.hasError('email') && registracijaForm.get('email')?.touched">
+      Email nije validan!
+    </mat-error>
+    <mat-error *ngIf="registracijaForm.get('email')?.hasError('emailZauzet') && registracijaForm.get('email')?.touched">
+      Email je već zauzet!
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Broj telefona</mat-label>
+    <input matInput formControlName="brojTelefona" placeholder="+38765123456" pattern="^[0-9]+$" />
+    <mat-icon matSuffix>phone</mat-icon>
+    <mat-error
+      *ngIf="registracijaForm.get('brojTelefona')?.hasError('pattern') && registracijaForm.get('brojTelefona')?.touched">
+      Neispravan format broja telefona.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Korisni&ccaron;ko ime</mat-label>
+    <input matInput formControlName="korisnickoIme" placeholder="Vuk" pattern="^[a-zA-Z0-9_]*$" required minlength="3"
+      maxlength="100" (keyup)="provjeriDostupnostKorisnickogImena()">
+    <mat-icon matSuffix>account_circle</mat-icon>
+    <mat-error
+      *ngIf="registracijaForm.get('korisnickoIme')?.hasError('required') && registracijaForm.get('korisnickoIme')?.touched">
+      Korisničko ime je obavezno!
+    </mat-error>
+    <mat-error
+      *ngIf="registracijaForm.get('korisnickoIme')?.hasError('pattern') && registracijaForm.get('korisnickoIme')?.touched">
+      Korisničko ime ne smije sadržati specijalne karaktere.
+    </mat-error>
+    <mat-error
+      *ngIf="registracijaForm.get('korisnickoIme')?.hasError('minlength') && registracijaForm.get('korisnickoIme')?.touched">
+      Korisničko ime mora imati najmanje 3 karaktera.
+    </mat-error>
+    <mat-error
+      *ngIf="registracijaForm.get('korisnickoIme')?.hasError('korisnickoImeZauzeto') && registracijaForm.get('korisnickoIme')?.touched">
+      Korisničko ime je već zauzeto!
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Lozinka</mat-label>
+    <input matInput type="password" formControlName="lozinka" required pattern="^[a-zA-Z0-9]*$" minlength="8"
+      maxlength="20" #lozinkaUlaz />
+    <mat-icon matSuffix (click)="promjeniVidljivostLozinke(lozinkaUlaz)">
+      {{ lozinkaPrikaz ? 'lock' : 'visibility' }}
+    </mat-icon>
+    <mat-error
+      *ngIf="registracijaForm.get('lozinka')?.hasError('required') && registracijaForm.get('lozinka')?.touched">
+      Lozinka je obavezna!
+    </mat-error>
+    <mat-error
+      *ngIf="registracijaForm.get('lozinka')?.hasError('minlength') && registracijaForm.get('lozinka')?.touched">
+      Lozinka mora imati najmanje 8 karaktera.
+    </mat-error>
+    <mat-error
+      *ngIf="registracijaForm.get('lozinka')?.hasError('maxlength') && registracijaForm.get('lozinka')?.touched">
+      Lozinka može imati najviše 20 karaktera.
+    </mat-error>
+    <mat-error *ngIf="registracijaForm.get('lozinka')?.hasError('pattern') && registracijaForm.get('lozinka')?.touched">
+      Lozinka ne smije sadržiti specijalne karaktere.
+    </mat-error>
+  </mat-form-field>
+
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <div>
+      <strong>Avatar:&nbsp;&nbsp;</strong>
+    </div>
+    <div>
+      <img [src]="avatarUrl" alt="Odabrani Avatar" width="60" height="60" class="avatar-slika">
+    </div>
+    <div class="avatar-dugme">
+      <button mat-raised-button type="button" color="accent" (click)="otvoriAvatarDijalog()">Odaberi</button>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <button mat-raised-button color="primary" type="submit" [disabled]="registracijaForm.invalid">Registruj se</button>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="center center" class="linkovi-kontejner">
+    <a mat-raised-button color="accent" routerLink="../../home"><mat-icon>home</mat-icon>
+      <strong>Početna</strong></a>&nbsp;
+    <a mat-raised-button color="primary" routerLink="../../auth/login"><mat-icon>login</mat-icon>
+      <strong>Prijava</strong></a>
+  </div>
+
+</form>

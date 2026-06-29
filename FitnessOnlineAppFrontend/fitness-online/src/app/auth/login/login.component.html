@@ -1,0 +1,58 @@
+<div class="stranica-naslov">
+  Prijava
+</div>
+
+<form [formGroup]="prijavaForm" (ngSubmit)="prijavaKorisnika()">
+
+  <mat-form-field appearance="outline">
+    <mat-label>Korisni&ccaron;ko ime</mat-label>
+    <input matInput formControlName="korisnickoIme" placeholder="Vuk" pattern="^[a-zA-Z0-9_]*$" required minlength="3"
+      maxlength="100">
+    <mat-icon matSuffix>account_circle</mat-icon>
+    <mat-error
+      *ngIf="prijavaForm.get('korisnickoIme')?.hasError('required') && prijavaForm.get('korisnickoIme')?.touched">
+      Korisničko ime je obavezno!
+    </mat-error>
+    <mat-error
+      *ngIf="prijavaForm.get('korisnickoIme')?.hasError('pattern') && prijavaForm.get('korisnickoIme')?.touched">
+      Korisničko ime ne smije sadržati specijalne karaktere.
+    </mat-error>
+    <mat-error
+      *ngIf="prijavaForm.get('korisnickoIme')?.hasError('minlength') && prijavaForm.get('korisnickoIme')?.touched">
+      Korisničko ime mora imati najmanje 3 karaktera.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Lozinka</mat-label>
+    <input matInput type="password" formControlName="lozinka" required pattern="^[a-zA-Z0-9]*$" minlength="8"
+      maxlength="20" #lozinkaUlaz />
+    <mat-icon matSuffix (click)="promjeniVidljivostLozinke(lozinkaUlaz)">
+      {{ lozinkaPrikaz ? 'lock' : 'visibility' }}
+    </mat-icon>
+    <mat-error *ngIf="prijavaForm.get('lozinka')?.hasError('required') && prijavaForm.get('lozinka')?.touched">
+      Lozinka je obavezna!
+    </mat-error>
+    <mat-error *ngIf="prijavaForm.get('lozinka')?.hasError('minlength') && prijavaForm.get('lozinka')?.touched">
+      Lozinka mora imati najmanje 8 karaktera.
+    </mat-error>
+    <mat-error *ngIf="prijavaForm.get('lozinka')?.hasError('maxlength') && prijavaForm.get('lozinka')?.touched">
+      Lozinka može imati najviše 20 karaktera.
+    </mat-error>
+    <mat-error *ngIf="prijavaForm.get('lozinka')?.hasError('pattern') && prijavaForm.get('lozinka')?.touched">
+      Lozinka ne smije sadržiti specijalne karaktere.
+    </mat-error>
+  </mat-form-field>
+
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <button mat-raised-button color="primary" type="submit" [disabled]="prijavaForm.invalid">Prijava</button>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="center center" class="linkovi-kontejner">
+    <a mat-raised-button color="accent" routerLink="../../home"><mat-icon>home</mat-icon>
+      <strong>Početna</strong></a>&nbsp;
+    <a mat-raised-button color="primary" routerLink="../../auth/registration"><mat-icon>login</mat-icon>
+      <strong>Registracija</strong></a>
+  </div>
+
+</form>
